@@ -1,0 +1,62 @@
+import type { Request, Response, NextFunction } from "express";
+import Joi from "joi";
+
+// Define interface for extended Request object
+declare global {
+  namespace Express {
+    interface Request {
+      allParams: {
+        query: any;
+        body: any;
+        params: any;
+      };
+    }
+  }
+}
+
+interface ValidationError {
+  field: string;
+  message: string;
+}
+
+interface ValidationResult {
+  message: string;
+  errors: ValidationError[];
+}
+
+// Define generic type for the schema parameter
+type JoiSchema = Joi.ObjectSchema | Joi.ArraySchema;
+
+const validateRequest = (schema: JoiSchema) => {
+  return (req: Request, res: Response, next: NextFunction) => {
+    // Create a new object with separate keys for query, body, and params
+    req.allParams = {
+      query: req.query,
+      body: req.body,
+      params: req.params,
+    };
+
+    // Validate the constructed object using the provided Joi schema
+    const { error, value } = schema.validate(req.allParams, {
+      abortEarly: false,
+    });
+
+    if (error) {
+      const response: ValidationResult = {
+        message: "Validation failed",
+        errors: error.details.map((err: Joi.ValidationErrorItem) => ({
+          field: err.path.join("."),
+          message: err.message,
+        })),
+      };
+
+      return res.status(400).json(response);
+    }
+
+    // Use the validated (and possibly sanitized) values
+    req.allParams = value;
+    next();
+  };
+};
+
+export default validateRequest;

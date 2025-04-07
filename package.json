@@ -1,0 +1,50 @@
+{
+  "name": "node-express-boilerplate",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "start": "node index.ts",
+    "dev": "npx nodemon index.ts",
+    "lint": "npx eslint . --fix",
+    "format": "npx prettier --write ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "joi": "^17.13.3",
+    "module-alias": "^2.2.3",
+    "mongoose": "^8.13.1",
+    "morgan": "^1.10.0",
+    "uuid": "^11.1.0",
+    "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.23.0",
+    "@types/dotenv": "^8.2.3",
+    "@types/express": "^5.0.1",
+    "@types/joi": "^17.2.3",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^22.14.0",
+    "@types/winston": "^2.4.4",
+    "eslint": "^9.23.0",
+    "globals": "^16.0.0",
+    "nodemon": "^3.1.9",
+    "prettier": "^3.5.3"
+  },
+  "_moduleAliases": {
+    "@": "./src",
+    "@config": "./config",
+    "@controllers": "./src/controllers",
+    "@middlewares": "./src/middlewares",
+    "@models": "./src/models",
+    "@services": "./src/services",
+    "@validations": "./src/validations"
+  }
+}
