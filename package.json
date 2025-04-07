@@ -19,7 +19,6 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "joi": "^17.13.3",
-    "module-alias": "^2.2.3",
     "mongoose": "^8.13.1",
     "morgan": "^1.10.0",
     "uuid": "^11.1.0",
@@ -38,13 +37,12 @@
     "nodemon": "^3.1.9",
     "prettier": "^3.5.3"
   },
-  "_moduleAliases": {
-    "@": "./src",
-    "@config": "./config",
-    "@controllers": "./src/controllers",
-    "@middlewares": "./src/middlewares",
-    "@models": "./src/models",
-    "@services": "./src/services",
-    "@validations": "./src/validations"
+  "imports": {
+    "#config/*": "./config/*",
+    "#controllers/*": "./src/controllers/*",
+    "#middlewares/*": "./src/middlewares/*",
+    "#models/*": "./src/models/*",
+    "#services/*": "./src/services/*",
+    "#validations/*": "./src/validations/*"
   }
 }

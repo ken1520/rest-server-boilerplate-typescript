@@ -1,8 +1,8 @@
-import paths from "./config/paths.ts";
-import logger from "./config/logger.ts";
+import paths from "#config/paths.ts";
+import logger from "#config/logger.ts";
 import express from "express";
 import type { Router, RequestHandler } from "express";
-import validateRequest from "./src/middlewares/validator.ts";
+import validateRequest from "#middlewares/validator.ts";
 
 const router: Router = express.Router();
 

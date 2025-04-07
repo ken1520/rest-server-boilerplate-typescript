@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import logger from "../../config/logger.ts";
-import UsersService from "../services/users.service.ts";
+import logger from "#config/logger.ts";
+import UsersService from "#services/users.service.ts";
 
 const index = async (req: Request, res: Response): Promise<void> => {
   try {
