@@ -1,9 +1,3 @@
-// const cors = require("cors");
-// const express = require("express");
-// const { v4: uuidv4 } = require("uuid");
-// const logger = require("@config/logger");
-// const router = require("./router");
-// const app = express();
 import cors from "cors";
 import express from "express";
 import type { Express, Request, Response, NextFunction } from "express";
