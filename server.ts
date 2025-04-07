@@ -5,16 +5,6 @@ import { v4 as uuidv4 } from "uuid";
 import logger from "#config/logger.ts";
 import router from "./router.ts";
 
-// Extend Express Request type to include custom properties
-declare global {
-  namespace Express {
-    interface Request {
-      traceId: string;
-      logger: typeof logger;
-    }
-  }
-}
-
 const app: Express = express();
 // Request context middleware
 app.use((req: Request, res: Response, next: NextFunction) => {

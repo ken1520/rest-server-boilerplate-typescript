@@ -1,5 +1,6 @@
 import logger from "#config/logger.ts";
-import Users, { UserDocument } from "#models/users.model.ts";
+import {Users} from "#models/users.model.ts";
+import type { UserDocument } from "#models/users.model.ts";
 
 // Function to fetch all users
 const index = async (): Promise<UserDocument[]> => {

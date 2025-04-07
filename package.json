@@ -43,6 +43,8 @@
     "#middlewares/*": "./src/middlewares/*",
     "#models/*": "./src/models/*",
     "#services/*": "./src/services/*",
-    "#validations/*": "./src/validations/*"
+    "#validations/*": "./src/validations/*",
+    "#utils/*": "./src/utils/*",
+    "#interfaces/*": "./src/interfaces/*"
   }
 }
