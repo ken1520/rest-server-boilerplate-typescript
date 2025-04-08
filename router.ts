@@ -57,7 +57,9 @@ paths.forEach(async (path: string) => {
       // Handle validation middleware
       if (mwName === "validate") {
         try {
-          const schema = await import(`./src/validations/${controller}.validator.ts`)
+          const schema = await import(
+            `./src/validations/${controller}.validator.ts`
+          );
           return validateRequest(schema[actionName]);
         } catch (schemaErr) {
           logger.error(
@@ -73,7 +75,9 @@ paths.forEach(async (path: string) => {
 
       // Load regular middleware
       try {
-        const mw: RequestHandler = await import(`./src/middlewares/${mwName}.ts`);
+        const mw: RequestHandler = await import(
+          `./src/middlewares/${mwName}.ts`
+        );
         if (typeof mw !== "function") {
           throw new Error(`Middleware '${mwName}' is not a function`);
         }
@@ -88,11 +92,11 @@ paths.forEach(async (path: string) => {
       }
     });
 
-  // Await resolution of all middleware functions
-  const resolvedMiddlewares = await Promise.all(middlewareFns);
+    // Await resolution of all middleware functions
+    const resolvedMiddlewares = await Promise.all(middlewareFns);
 
-  // Register the routes
-  router[method](route, ...resolvedMiddlewares, targetController[actionName]);
+    // Register the routes
+    router[method](route, ...resolvedMiddlewares, targetController[actionName]);
 
     logger.info(`Registered route: ${method.toUpperCase()} ${route}`);
   } catch (error: unknown) {

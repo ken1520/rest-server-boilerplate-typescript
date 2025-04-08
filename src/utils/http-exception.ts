@@ -3,7 +3,7 @@ export class HttpException extends Error {
     public status: number,
     public message: string,
     public code?: string,
-    public details?: string
+    public details?: string,
   ) {
     super(message);
     this.code = code || `HTTP_${status}`;

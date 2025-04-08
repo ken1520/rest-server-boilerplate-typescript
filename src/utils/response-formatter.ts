@@ -1,5 +1,5 @@
-import type { Response } from 'express';
-import type { ApiResponse } from '#interfaces/response.ts';
+import type { Response } from "express";
+import type { ApiResponse } from "#interfaces/response.ts";
 // import { HttpException } from './http-exception.ts';
 
 export const formatResponse = (
@@ -13,7 +13,7 @@ export const formatResponse = (
     status?: number;
     timestamp?: string;
     traceId?: string;
-  }
+  },
 ) => {
   const response: ApiResponse = {
     success: status >= 200 && status < 300,
