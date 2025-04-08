@@ -24,6 +24,4 @@ const userSchema: Schema<UserDocument> = new Schema(
 );
 
 // Create the model
-export const Users = mongoose.model<UserDocument>("guests", userSchema);
-
-// export default Users;
+export const Users = mongoose.model<UserDocument>("users", userSchema);
