@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-import server from "./server.ts";
+import server from "#root/server.ts";
 import logger from "#config/logger.ts";
 
 // Connect to database and start the server

@@ -34,9 +34,7 @@ paths.forEach(async (path: string) => {
   const middlewareNames = tokens.slice(2, tokens.length - 2);
 
   try {
-    const targetController = await import(
-      `./src/controllers/${controllerName}.ts`
-    );
+    const targetController = await import(`#controllers/${controllerName}.ts`);
 
     if (!router[method]) {
       throw new Error(`Unsupported method '${method}' for path '${path}'`);
@@ -58,7 +56,7 @@ paths.forEach(async (path: string) => {
       if (mwName === "validate") {
         try {
           const schema = await import(
-            `./src/validations/${controller}.validator.ts`
+            `#validations/${controller}.validator.ts`
           );
           return validateRequest(schema[actionName]);
         } catch (schemaErr) {
@@ -75,9 +73,7 @@ paths.forEach(async (path: string) => {
 
       // Load regular middleware
       try {
-        const mw: RequestHandler = await import(
-          `./src/middlewares/${mwName}.ts`
-        );
+        const mw: RequestHandler = await import(`.#middlewares/${mwName}.ts`);
         if (typeof mw !== "function") {
           throw new Error(`Middleware '${mwName}' is not a function`);
         }

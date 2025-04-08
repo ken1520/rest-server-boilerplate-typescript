@@ -6,7 +6,7 @@
   "main": "index.ts",
   "scripts": {
     "start": "node index.ts",
-    "dev": "npx nodemon index.ts",
+    "dev": "nodemon --exec node index.ts",
     "lint": "npx eslint . --fix",
     "format": "npx prettier --write ."
   },
@@ -38,7 +38,8 @@
     "prettier": "^3.5.3"
   },
   "imports": {
-    "#config/*": "./config/*",
+    "#root/*": "./src/*",
+    "#config/*": "./src/config/*",
     "#controllers/*": "./src/controllers/*",
     "#middlewares/*": "./src/middlewares/*",
     "#models/*": "./src/models/*",

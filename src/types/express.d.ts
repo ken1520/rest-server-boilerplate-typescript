@@ -1,5 +1,3 @@
-import { ApiResponse } from "./src/interfaces/response";
-import { HttpException } from "./src/utils/http-exception";
 import logger from "#config/logger.ts";
 
 declare global {
