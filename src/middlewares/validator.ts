@@ -6,9 +6,9 @@ declare global {
   namespace Express {
     interface Request {
       allParams: {
-        query: any;
-        body: any;
-        params: any;
+        query?: any;
+        body?: any;
+        params?: any;
       };
     }
   }
@@ -31,9 +31,9 @@ const validateRequest = (schema: JoiSchema) => {
   return (req: Request, res: Response, next: NextFunction) => {
     // Create a new object with separate keys for query, body, and params
     req.allParams = {
-      query: req.query,
-      body: req.body,
-      params: req.params,
+      ...(Object.entries(req.query).length > 0 && { query: req.query }),
+      ...(Object.entries(req.body).length > 0 && { body: req.body }),
+      ...(Object.entries(req.params).length > 0 && { params: req.params }),
     };
 
     // Validate the constructed object using the provided Joi schema
