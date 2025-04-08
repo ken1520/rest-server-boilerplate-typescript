@@ -3,9 +3,15 @@ import express from "express";
 import type { Express, Request, Response, NextFunction } from "express";
 import { v4 as uuidv4 } from "uuid";
 import logger from "#config/logger.ts";
+import {
+  responseFormatter,
+  errorHandler,
+  notFoundHandler,
+} from "#middlewares/response.ts";
 import router from "./router.ts";
 
 const app: Express = express();
+
 // Request context middleware
 app.use((req: Request, res: Response, next: NextFunction) => {
   // Generate unique request ID for tracking
@@ -20,6 +26,8 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
   next();
 });
+
+app.use(responseFormatter());
 
 // Request logging middleware
 app.use((req: Request, res: Response, next: NextFunction) => {
@@ -67,5 +75,11 @@ app.use(
 
 // Set up routes
 app.use(router);
+
+// Handle 404
+app.use(notFoundHandler());
+
+// Handle unexpected errors
+app.use(errorHandler());
 
 export default app;

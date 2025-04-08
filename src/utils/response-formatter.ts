@@ -1,6 +1,6 @@
 import type { Response } from "express";
 import type { ApiResponse } from "#interfaces/response.ts";
-// import { HttpException } from './http-exception.ts';
+import { HttpException } from "#utils/http-exception.ts";
 
 export const formatResponse = (
   res: Response,
@@ -8,11 +8,8 @@ export const formatResponse = (
     data,
     status = 200,
   }: {
-    success?: boolean;
     data: any;
     status?: number;
-    timestamp?: string;
-    traceId?: string;
   },
 ) => {
   const response: ApiResponse = {
@@ -26,27 +23,26 @@ export const formatResponse = (
   return res.status(status).json(response);
 };
 
-// export const formatError = (
-//   error: Error | HttpException,
-//   res: Response
-// ) => {
-//   const isProduction = process.env.NODE_ENV === 'production';
-//   const status = error instanceof HttpException ? error.status : 500;
-//   const code = error instanceof HttpException ? error.code : 'INTERNAL_SERVER_ERROR';
-//   const message = error instanceof HttpException ? error.message : 'Internal Server Error';
+export const formatError = (res: Response, error: Error | HttpException) => {
+  const isProduction = process.env.NODE_ENV === "production";
+  const status = error instanceof HttpException ? error.status : 500;
+  const code =
+    error instanceof HttpException ? error.code : "INTERNAL_SERVER_ERROR";
+  const message =
+    error instanceof HttpException ? error.message : "Internal Server Error";
 
-//   const errorResponse: ApiResponse = {
-//     success: false,
-//     status,
-//     message,
-//     error: {
-//       code,
-//       details: error.message,
-//       stack: isProduction ? undefined : error.stack,
-//     },
-//     timestamp: new Date().toISOString(),
-//     traceId: res.locals.traceId,
-//   };
+  const errorResponse: ApiResponse = {
+    success: false,
+    status,
+    message,
+    error: {
+      code,
+      details: error.message,
+      stack: isProduction ? undefined : error.stack,
+    },
+    timestamp: new Date().toISOString(),
+    traceId: res.locals.traceId,
+  };
 
-//   return res.status(status).json(errorResponse);
-// };
+  return res.status(status).json(errorResponse);
+};
