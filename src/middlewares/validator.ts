@@ -1,19 +1,6 @@
 import type { Request, Response, NextFunction } from "express";
 import Joi from "joi";
 
-// Define interface for extended Request object
-declare global {
-  namespace Express {
-    interface Request {
-      allParams: {
-        query?: any;
-        body?: any;
-        params?: any;
-      };
-    }
-  }
-}
-
 interface ValidationError {
   field: string;
   message: string;

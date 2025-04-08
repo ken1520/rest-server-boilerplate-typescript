@@ -7,10 +7,11 @@ declare global {
     interface Request {
       traceId: string;
       logger: typeof logger;
+      allParams: {
+        query?: any;
+        body?: any;
+        params?: any;
+      };
     }
-
-    // interface Locals {
-    //   traceId: string;
-    // }
   }
 }
