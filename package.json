@@ -46,6 +46,7 @@
     "#services/*": "./src/services/*",
     "#validations/*": "./src/validations/*",
     "#utils/*": "./src/utils/*",
-    "#interfaces/*": "./src/interfaces/*"
+    "#interfaces/*": "./src/interfaces/*",
+    "#dto/*": "./src/dto/*"
   }
 }

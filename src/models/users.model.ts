@@ -2,6 +2,7 @@ import mongoose, { Schema, Document } from "mongoose";
 
 // Interface for the User document
 export interface UserDocument extends Document {
+  _id: mongoose.Types.ObjectId;
   name: string;
   created_at: Date;
   updated_at: Date;
