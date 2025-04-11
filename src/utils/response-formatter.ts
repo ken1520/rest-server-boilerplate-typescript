@@ -28,13 +28,10 @@ export const formatError = (res: Response, error: Error | HttpException) => {
   const status = error instanceof HttpException ? error.status : 500;
   const code =
     error instanceof HttpException ? error.code : "INTERNAL_SERVER_ERROR";
-  const message =
-    error instanceof HttpException ? error.message : "Internal Server Error";
 
   const errorResponse: ApiResponse = {
     success: false,
     status,
-    message,
     error: {
       code,
       details: error.message,
