@@ -6,7 +6,7 @@ export const responseFormatter = () => {
   return (req: Request, res: Response, next: NextFunction) => {
     // Add formatted response methods to res object
     res.formattedJson = (payload) => formatResponse(res, payload);
-    res.formattedError = (error: Error) => formatError(res, error);
+    res.formattedError = (error: unknown) => formatError(res, error as Error);
 
     // Store traceId in response locals
     res.locals.traceId = req.traceId;

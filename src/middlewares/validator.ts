@@ -1,4 +1,5 @@
 import type { Request, Response, NextFunction } from "express";
+import { HttpException } from "#utils/http-exception.ts";
 import Joi from "joi";
 
 interface ValidationError {
@@ -37,7 +38,13 @@ const validateRequest = (schema: JoiSchema) => {
         })),
       };
 
-      return res.status(400).json(response);
+      const validationError = new HttpException(
+        400,
+        JSON.stringify(response),
+        "VALIDATION_ERROR",
+      );
+
+      return res.formattedError(validationError);
     }
 
     // Use the validated (and possibly sanitized) values

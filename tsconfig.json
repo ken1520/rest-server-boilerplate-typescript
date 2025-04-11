@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "paths": {
+      "#root/*": ["src/*"],
+      "#config/*": ["src/config/*"],
+      "#controllers/*": ["src/controllers/*"],
+      "#dto/*": ["src/dto/*"],
+      "#interfaces/*": ["src/interfaces/*"],
+      "#middlewares/*": ["src/middlewares/*"],
+      "#models/*": ["src/models/*"],
+      "#services/*": ["src/services/*"],
+      "#utils/*": ["src/utils/*"],
+      "#validations/*": ["src/validations/*"]
+    }
+  }
+}

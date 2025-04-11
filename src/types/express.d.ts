@@ -15,7 +15,7 @@ declare global {
 
     interface Response {
       formattedJson: (payload: { data: any; status?: number }) => Response;
-      formattedError: (error: Error | HttpException) => Response;
+      formattedError: (error: unknown | Error | HttpException) => Response;
     }
 
     interface Locals {
