@@ -13,7 +13,7 @@ type HttpMethod =
   | "delete"
   | "patch"
   | "head"
-  | "options";
+  | "options";  // Add more methods if you need
 
 paths.forEach(async (path: string) => {
   const tokens = path.split(" ");
@@ -75,13 +75,14 @@ paths.forEach(async (path: string) => {
         }
       }
 
-      // Load regular middleware
+      // Load regular middlewares
       try {
-        const mw: RequestHandler = await import(`.#middlewares/${mwName}.ts`);
-        if (typeof mw !== "function") {
+        const module = await import(`#middlewares/${mwName}.ts`);
+        const mwFunction = module.default;
+        if (typeof mwFunction !== "function") {
           throw new Error(`Middleware '${mwName}' is not a function`);
         }
-        return mw;
+        return mwFunction;
       } catch (mwErr) {
         logger.error(`Failed to load middleware '${mwName}': ${mwErr}`);
         return (
