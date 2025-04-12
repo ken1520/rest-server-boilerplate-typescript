@@ -18,20 +18,24 @@ type HttpMethod =
 paths.forEach(async (path: string) => {
   const tokens = path.split(" ");
 
-  // Ensure we have at least method, route, controller, action (4 tokens)
-  if (tokens.length < 4) {
+  // Ensure we have at least method, route, controller.action (3 tokens)
+  if (tokens.length < 3) {
     logger.error(`Invalid path format for: '${path}'`);
     return;
   }
 
   const method = tokens[0].toLowerCase() as Lowercase<HttpMethod>;
   const route = tokens[1];
-  const controller = tokens[tokens.length - 2];
+  const controllerWithAction = tokens[tokens.length - 1];
+
+  // Extract controller and action names
+  const controller = controllerWithAction.split(".")[0];
   const controllerName = `${controller}.controller`;
-  const actionName = tokens[tokens.length - 1];
+
+  const actionName = controllerWithAction.split(".")[1];
 
   // Middlewares (if any) are any tokens between the route and controller tokens
-  const middlewareNames = tokens.slice(2, tokens.length - 2);
+  const middlewareNames = tokens.slice(2, tokens.length - 1);
 
   try {
     const targetController = await import(`#controllers/${controllerName}.ts`);
