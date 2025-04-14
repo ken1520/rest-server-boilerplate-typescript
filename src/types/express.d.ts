@@ -1,4 +1,5 @@
 import logger from "#config/logger.ts";
+import type { ApiResponseMeta } from "#interfaces/response.ts";
 import { HttpException } from "#utils/http-exception.ts";
 
 declare global {
@@ -14,7 +15,11 @@ declare global {
     }
 
     interface Response {
-      formattedJson: (payload: { data: any; status?: number }) => Response;
+      formattedJson: (payload: {
+        data: any;
+        meta?: ApiResponseMeta;
+        status?: number;
+      }) => Response;
       formattedError: (error: unknown | Error | HttpException) => Response;
     }
 

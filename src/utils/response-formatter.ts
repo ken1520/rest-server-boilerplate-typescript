@@ -1,14 +1,16 @@
 import type { Response } from "express";
-import type { ApiResponse } from "#interfaces/response.ts";
+import type { ApiResponse, ApiResponseMeta } from "#interfaces/response.ts";
 import { HttpException } from "#utils/http-exception.ts";
 
 export const formatResponse = (
   res: Response,
   {
     data,
+    meta,
     status = 200,
   }: {
     data: any;
+    meta?: ApiResponseMeta;
     status?: number;
   },
 ) => {
@@ -16,6 +18,7 @@ export const formatResponse = (
     success: status >= 200 && status < 300,
     status,
     data,
+    meta,
     timestamp: new Date().toISOString(),
     traceId: res.locals.traceId,
   };
