@@ -13,7 +13,7 @@ type HttpMethod =
   | "delete"
   | "patch"
   | "head"
-  | "options";  // Add more methods if you need
+  | "options"; // Add more methods if you need
 
 paths.forEach(async (path: string) => {
   const tokens = path.split(" ");

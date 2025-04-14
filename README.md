@@ -73,7 +73,7 @@ You can add multiple middleware functions for each routes. Make sure you put the
 For example:
 
 ```typescript
-"GET /users foo bar hello users.index"
+"GET /users foo bar hello users.index";
 ```
 
 Make sure your middleware module exports a default function ONLY.
@@ -84,10 +84,10 @@ For example:
 import type { Request, Response, NextFunction } from "express";
 
 const hello = (req: Request, res: Response, next: NextFunction) => {
-  console.log('hello world');
+  console.log("hello world");
 
   next();
-}
+};
 
 export default hello;
 ```
@@ -99,9 +99,7 @@ There is a generic validating function using [Joi](https://github.com/hapijs/joi
 For example:
 
 ```typescript
-const routes: string[] = [
-  "GET /users validate users.index",
-];
+const routes: string[] = ["GET /users validate users.index"];
 ```
 
 Then, name the [Joi schema](https://joi.dev/api/?v=17.13.3#general-usage) same with your controller action and name the file same with your controller.
@@ -124,4 +122,5 @@ export const index = Joi.object({
 ```
 
 ## Acknowledgements
+
 This project was inspired by and builds upon ideas from the [hagopj13/node-express-boilerplate](https://github.com/hagopj13/node-express-boilerplate) and [shoplineapp/sl-express](https://github.com/shoplineapp/sl-express) repository. Special thanks to the authors for their excellent work, which guided the structure and design of this project.
